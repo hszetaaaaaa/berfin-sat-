@@ -17,7 +17,7 @@
             font-family: 'Montserrat', sans-serif; /* Modern ve okunaklı font */
             line-height: 1.6;
             color: #333;
-            background-color: #f8f8f8; /* Çok açık gri arka plan - Artık resim yok, sadece renk */
+            background-color: #f8f8f8; /* Çok açık gri arka plan */
             min-height: 100vh; /* Minimum tam ekran yüksekliği */
             display: flex;
             flex-direction: column;
@@ -87,6 +87,70 @@
             background-color: #FFD700; /* Altın sarısı vurgu */
             color: #333;
             transform: translateY(-2px);
+        }
+
+        /* Promosyon Banner Alanı */
+        .promo-banner {
+            background: linear-gradient(to right, #4CAF50, #8BC34A); /* Yeşil tonlarında gradient */
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            margin: 0 auto 30px auto; /* Üstteki ve alttaki boşluk */
+            width: 90%;
+            max-width: 1200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-out; /* Hafif bir giriş animasyonu */
+        }
+
+        .promo-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            color: #fff; /* Başlık rengi beyaz */
+        }
+
+        .promo-banner h2::after {
+            /* Promosyon başlığının altındaki çizgiyi kaldır */
+            content: none; 
+        }
+
+        .promo-banner p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .promo-banner .promo-button {
+            display: inline-block;
+            background-color: #FFD700; /* Altın sarısı buton */
+            color: #333;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px; /* Yuvarlak köşeli buton */
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .promo-banner .promo-button:hover {
+            background-color: #e6c200; /* Hover'da daha koyu sarı */
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animasyon */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Ana İçerik Kapsayıcı */
@@ -239,6 +303,17 @@
                 margin: 10px 0;
             }
 
+            .promo-banner h2 { /* Promosyon banner başlığı için responsive */
+                font-size: 2.2em;
+            }
+            .promo-banner p { /* Promosyon banner paragrafı için responsive */
+                font-size: 1.2em;
+            }
+            .promo-banner .promo-button { /* Promosyon buton için responsive */
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+
             .main-content-wrapper {
                 width: 95%;
                 margin: 20px auto;
@@ -264,6 +339,16 @@
 
             nav ul li a {
                 font-size: 0.85em;
+            }
+
+            .promo-banner { /* Promosyon banner için responsive */
+                padding: 30px 15px;
+            }
+            .promo-banner h2 { /* Promosyon banner başlığı için responsive */
+                font-size: 1.8em;
+            }
+            .promo-banner p { /* Promosyon banner paragrafı için responsive */
+                font-size: 1em;
             }
 
             .product-card {
@@ -302,6 +387,13 @@
         </ul>
     </nav>
 
+    <section class="promo-banner">
+        <div class="container">
+            <h2>Bu Haftanın Fırsatı!</h2>
+            <p>Seçili Ürünlerde %30'a Varan İndirimleri Kaçırma!</p>
+            <a href="#" class="promo-button">Fırsatları Keşfet</a>
+        </div>
+    </section>
     <div class="main-content-wrapper">
         <div class="container">
             <h2>Öne Çıkan Ürünler</h2>
