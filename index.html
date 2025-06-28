@@ -1,203 +1,370 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hüber Mağaza - Ana Sayfa</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hüber Mağaza - Kalite ve Şıklık Burada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
     <style>
-        /* Genel Stil Ayarları */
-        body {
-            font-family: Arial, sans-serif;
+        /* Genel CSS Reset ve Temel Ayarlar */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4; /* Açık gri arka plan */
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
             color: #333;
+            background-color: #f8f8f8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        /* Başlık Alanı */
         header {
-            background-color: #28a745; /* Hüber'e yakışan yeşil tonu */
-            color: white;
-            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 30px 0;
             text-align: center;
-            border-radius: 8px 8px 0 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1000;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 2.5em;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         header p {
-            font-size: 1.1em;
-            margin-top: 5px;
+            font-size: 1.2em;
+            opacity: 0.9;
         }
 
-        /* Navigasyon (Menü) */
         nav {
-            background-color: #343a40; /* Koyu gri menü */
-            padding: 10px 0;
+            background-color: rgba(50, 50, 50, 0.9);
+            padding: 15px 0;
             text-align: center;
-            border-radius: 0 0 8px 8px;
-            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 999;
         }
 
         nav ul {
             list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex; /* Menü öğelerini yan yana dizer */
-            justify-content: center; /* Ortalar */
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         nav ul li {
-            margin: 0 15px;
+            margin: 0 20px;
         }
 
         nav ul li a {
-            color: white;
+            color: #fff;
             text-decoration: none;
             font-weight: bold;
-            padding: 5px 10px;
-            transition: background-color 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
         }
 
-        nav ul li a:hover {
-            background-color: #495057;
-            border-radius: 4px;
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: #FFD700;
+            color: #333;
+            transform: translateY(-2px);
         }
 
-        /* Ürün Kartları */
+        .main-content-wrapper {
+            flex-grow: 1;
+            padding: 40px 0;
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.9);
+            margin: 30px auto;
+            width: 90%;
+            max-width: 1300px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 95%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        h2 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #444;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #FFD700;
+            border-radius: 5px;
+        }
+
         .product-grid {
-            display: grid; /* Ürünleri ızgara şeklinde dizer */
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive ızgara */
-            gap: 20px; /* Ürünler arası boşluk */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .product-card {
             background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
         }
 
         .product-card:hover {
-            transform: translateY(-5px); /* Üzerine gelince hafifçe yukarı kaydırır */
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
         .product-card img {
             max-width: 100%;
-            height: 200px; /* Görsel yüksekliğini sabitle */
-            object-fit: cover; /* Görselin oranını koruyarak kutuya sığdır */
-            border-radius: 4px;
-            margin-bottom: 10px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.03);
         }
 
         .product-card h3 {
-            font-size: 1.3em;
-            margin: 10px 0;
-            color: #28a745;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6em;
+            margin: 15px 0 10px;
+            color: #444;
+        }
+
+        .product-card p {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 15px;
+            min-height: 40px;
         }
 
         .product-card .price {
-            font-size: 1.5em;
-            color: #dc3545; /* Kırmızı fiyat */
+            font-size: 1.8em;
+            color: #E74C3C;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
         }
 
         .product-card button {
-            background-color: #007bff; /* Mavi düğme */
+            background-color: #28a745;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 25px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .product-card button:hover {
-            background-color: #0056b3;
+            background-color: #218838;
+            transform: translateY(-2px);
         }
 
-        /* Footer */
         footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #f0f0f0;
             text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            background-color: #343a40;
-            color: white;
-            border-radius: 0 0 8px 8px;
+            padding: 30px 20px;
+            margin-top: auto;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .main-content-wrapper {
+                width: 95%;
+                margin: 20px auto;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            nav ul li a {
+                font-size: 0.85em;
+            }
+
+            .product-card {
+                padding: 15px;
+            }
+
+            .product-card h3 {
+                font-size: 1.4em;
+            }
+
+            .product-card .price {
+                font-size: 1.5em;
+            }
+
+            .product-card button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Hüber Mağaza</h1>
-        <p>Kaliteli Ürünler, Uygun Fiyatlar</p>
+        <h1>HÜBER MAĞAZA</h1>
+        <p>Estetik ve Kalitenin Buluştuğu Adres</p>
     </header>
 
     <nav>
         <ul>
-            <li><a href="#">Ana Sayfa</a></li>
-            <li><a href="#">Yeni Ürünler</a></li>
-            <li><a href="#">Kampanyalar</a></li>
+            <li><a href="#" class="active">Ana Sayfa</a></li>
+            <li><a href="#">Yeni Sezon</a></li>
+            <li><a href="#">Koleksiyonlar</a></li>
+            <li><a href="#">İndirimler</a></li>
             <li><a href="#">Hakkımızda</a></li>
             <li><a href="#">İletişim</a></li>
         </ul>
     </nav>
 
-    <div class="container">
-        <h2>Popüler Ürünlerimiz</h2>
-        <div class="product-grid">
-           <div class="product-card">
-    <img src="https://i.ibb.co/0jkkyrG8/Beyaz-Sar-Minimal-Modern-k-Kad-n-T-shirt.png" alt="Minimal Kadın Tişörtü">
-    <h3>Hüber Minimal Kadın Tişört</h3>
-    <p>Senin gibi zarif, senin gibi sade. Bu tasarım sadece bir kişiye özel.</p>
-    <div class="price">299.00 TL</div>
-    <button>Sepete Ekle</button>
-</div>
-     <h3>İnanılmaz Kaliteli Ürün</h3>
-                <p>Uzun ömürlü ve dayanıklı bir seçim.</p>
-                <div class="price">249.50 TL</div>
-                <button>Sepete Ekle</button>
-            </div>
+    <div class="main-content-wrapper">
+        <div class="container">
+            <h2>Öne Çıkan Ürünler</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x300?text=H%C3%BCber+Pantolon" alt="Şık Kumaş Pantolon" />
+                    <h3>Hüber Şık Kumaş Pantolon</h3>
+                    <p>Modern kesim, nefes alabilen kumaş. Her ana uygun.</p>
+                    <div class="price">499.99 TL</div>
+                    <button>Sepete Ekle</button>
+                </div>
 
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x200?text=Urun+3" alt="Ürün 3 Görseli">
-                <h3>Yüksek Performanslı Cihaz</h3>
-                <p>En son teknoloji ile üretildi.</p>
-                <div class="price">899.00 TL</div>
-                <button>Sepete Ekle</button>
-            </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x300?text=H%C3%BCber+Çanta" alt="El Yapımı Deri Çanta" />
+                    <h3>Hüber El Yapımı Deri Çanta</h3>
+                    <p>Zarafet ve dayanıklılık bir arada. Gerçek deri.</p>
+                    <div class="price">999.00 TL</div>
+                    <button>Sepete Ekle</button>
+                </div>
 
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x200?text=Urun+4" alt="Ürün 4 Görseli">
-                <h3>Şık Tasarımlı Ürün</h3>
-                <p>Evinize veya ofisinize çok yakışacak.</p>
-                <div class="price">79.90 TL</div>
-                <button>Sepete Ekle</button>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x300?text=H%C3%BCber+Kazak" alt="Premium Yün Kazak" />
+                    <h3>Hüber Premium Yün Kazak</h3>
+                    <p>Soğuk havalar için ideal, kaşındırmaz doku.</p>
+                    <div class="price">679.50 TL</div>
+                    <button>Sepete Ekle</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x300?text=H%C3%BCber+Ayakkabi" alt="Rahat Günlük Ayakkabı" />
+                    <h3>Hüber Rahat Günlük Ayakkabı</h3>
+                    <p>Tüm gün konfor ve şık tasarım.</p>
+                    <div class="price">749.00 TL</div>
+                    <button>Sepete Ekle</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x300?text=H%C3%BCber+Aksesuar" alt="Zarif Kolye" />
+                    <h3>Hüber Zarif Kolye</h3>
+                    <p>Günlük kullanıma uygun, minimal tasarım.</p>
+                    <div class="price">259.00 TL</div>
+                    <button>Sepete Ekle</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x300?text=H%C3%BCber+Mont" alt="Klasik Kaban" />
+                    <h3>Hüber Klasik Kaban</h3>
+                    <p>Soğuk kış günleri için sıcak ve şık.</p>
+                    <div class="price">1299.00 TL</div>
+                    <button>Sepete Ekle</button>
+                </div>
+
+                <!-- SENİN EKLEDİĞİN TİŞÖRT ÜRÜNÜ -->
+                <div class="product-card">
+                    <img src="https://i.ibb.co/0jkkyrG8/Beyaz-Sar-Minimal-Modern-k-Kad-n-T-shirt.png" alt="Minimal Kadın Tişörtü" />
+                    <h3>Hüber Minimal Kadın Tişört</h3>
+                    <p>Senin gibi zarif, senin gibi sade. Bu tasarım sadece bir kişiye özel.</p>
+                    <div class="price">299.00 TL</div>
+                    <button>Sepete Ekle</button>
+                </div>
+
             </div>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2025 Hüber Mağaza. Tüm Hakları Saklıdır.</p>
-        <p>Adres: Örnek Cad. No:123, İzmir, Türkiye</p>
+        <p>Adres: Şıklık Sok. No:42, Estetik Mahallesi, İzmir, Türkiye</p>
+        <p>İletişim: info@hubermagaza.com | +90 (555) 123 45 67</p>
     </footer>
 </body>
 </html>
