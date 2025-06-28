@@ -1,64 +1,200 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hüber Mağaza - Kalite ve Şıklık Burada</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-  <style>
-    /* CSS kodları */
-    /* Senin önceki stil kodların buraya gelecek, uzun olduğu için yukarıda verdim */
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hüber Mağaza - Kalite ve Şıklık Burada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+    <style>
+        /* Buraya mevcut CSS'ni aynen koyabilirsin, sadece altına aşağıdaki eklemeleri yap */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 20px 0;
+        }
+        h1, h2 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            color: #444;
+        }
+        .product-grid {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 90%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            width: 280px;
+            padding: 15px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            text-align: center;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 14px rgba(0,0,0,0.2);
+        }
+        .product-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .product-card h3 {
+            margin: 10px 0 5px;
+            font-family: 'Playfair Display', serif;
+            color: #222;
+        }
+        .price {
+            color: #E74C3C;
+            font-weight: bold;
+            font-size: 1.4em;
+            margin-top: 10px;
+        }
+        /* Detay bölüm */
+        #product-detail {
+            max-width: 600px;
+            margin: 30px auto 50px;
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            display: none;
+            position: relative;
+        }
+        #product-detail img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        #product-detail h2 {
+            margin-top: 0;
+            color: #444;
+        }
+        #product-detail p {
+            font-size: 1.1em;
+            line-height: 1.5;
+            color: #555;
+        }
+        #product-detail .price {
+            font-size: 2em;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+        #product-detail button.close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e74c3c;
+            border: none;
+            color: white;
+            font-size: 1.3em;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            line-height: 1;
+        }
+        /* Footer ve header basit */
+        header, footer {
+            text-align: center;
+            color: #444;
+            padding: 10px 0;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>HÜBER MAĞAZA</h1>
-    <p>Estetik ve Kalitenin Buluştuğu Adres</p>
-  </header>
+    <header>
+        <h1>HÜBER MAĞAZA</h1>
+        <p>Estetik ve Kalitenin Buluştuğu Adres</p>
+    </header>
 
-  <nav>
-    <ul>
-      <li><a href="#" class="active">Ana Sayfa</a></li>
-      <li><a href="#">Yeni Sezon</a></li>
-      <li><a href="#">Koleksiyonlar</a></li>
-      <li><a href="#">İndirimler</a></li>
-      <li><a href="#">Hakkımızda</a></li>
-      <li><a href="#">İletişim</a></li>
-    </ul>
-  </nav>
+    <h2>Öne Çıkan Ürünler</h2>
 
-  <div class="main-content-wrapper">
-    <div class="container">
-      <h2>Öne Çıkan Ürünler</h2>
-      <div class="product-grid">
-        <!-- Diğer ürünler buraya -->
-        <div class="product-card">
-          <img src="https://via.placeholder.com/400x300?text=H%C3%BCber+Pantolon" alt="Şık Kumaş Pantolon" />
-          <h3>Hüber Şık Kumaş Pantolon</h3>
-          <p>Modern kesim, nefes alabilen kumaş. Her ana uygun.</p>
-          <div class="price">499.99 TL</div>
-          <button>Sepete Ekle</button>
-        </div>
+    <div class="product-grid" id="product-grid">
 
-        <!-- Senin tişört ürünün -->
-        <div class="product-card">
-          <a href="index.html" style="text-decoration:none; color:inherit;">
+        <div class="product-card" data-id="1" tabindex="0">
             <img src="https://i.ibb.co/0jkkyrG8/Beyaz-Sar-Minimal-Modern-k-Kad-n-T-shirt.png" alt="Minimal Kadın Tişörtü" />
             <h3>Hüber Minimal Kadın Tişört</h3>
-          </a>
-          <p>Senin gibi zarif, senin gibi sade. Bu tasarım sadece bir kişiye özel.</p>
-          <div class="price">299.00 TL</div>
-          <button>Sepete Ekle</button>
+            <div class="price">299.00 TL</div>
         </div>
 
-      </div>
-    </div>
-  </div>
+        <div class="product-card" data-id="2" tabindex="0">
+            <img src="https://via.placeholder.com/400x300?text=H%C3%BCber+Pantolon" alt="Şık Kumaş Pantolon" />
+            <h3>Hüber Şık Kumaş Pantolon</h3>
+            <div class="price">499.99 TL</div>
+        </div>
 
-  <footer>
-    <p>&copy; 2025 Hüber Mağaza. Tüm Hakları Saklıdır.</p>
-    <p>Adres: Şıklık Sok. No:42, Estetik Mahallesi, İzmir, Türkiye</p>
-    <p>İletişim: info@hubermagaza.com | +90 (555) 123 45 67</p>
-  </footer>
+        <!-- Diğer ürünler buraya eklenebilir -->
+    </div>
+
+    <!-- Ürün Detay Alanı -->
+    <div id="product-detail">
+        <button class="close-btn" title="Kapat">&times;</button>
+        <img src="" alt="" id="detail-img" />
+        <h2 id="detail-title"></h2>
+        <p id="detail-desc"></p>
+        <div class="price" id="detail-price"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Hüber Mağaza. Tüm Hakları Saklıdır.</p>
+        <p>Adres: Şıklık Sok. No:42, Estetik Mahallesi, İzmir, Türkiye</p>
+        <p>İletişim: info@hubermagaza.com | +90 (555) 123 45 67</p>
+    </footer>
+
+    <script>
+        // Ürün bilgileri
+        const products = {
+            1: {
+                title: "Hüber Minimal Kadın Tişört",
+                img: "https://i.ibb.co/0jkkyrG8/Beyaz-Sar-Minimal-Modern-k-Kad-n-T-shirt.png",
+                desc: "Senin gibi zarif, senin gibi sade. Bu tasarım sadece bir kişiye özel. %100 pamuk kumaş, rahat kesim ve uzun ömürlü kullanım garantisiyle seni bekliyor.",
+                price: "299.00 TL"
+            },
+            2: {
+                title: "Hüber Şık Kumaş Pantolon",
+                img: "https://via.placeholder.com/400x300?text=H%C3%BCber+Pantolon",
+                desc: "Modern kesim, nefes alabilen kumaş. Her ana uygun.",
+                price: "499.99 TL"
+            }
+        };
+
+        // DOM elemanları
+        const productGrid = document.getElementById('product-grid');
+        const detailBox = document.getElementById('product-detail');
+        const detailImg = document.getElementById('detail-img');
+        const detailTitle = document.getElementById('detail-title');
+        const detailDesc = document.getElementById('detail-desc');
+        const detailPrice = document.getElementById('detail-price');
+        const closeBtn = detailBox.querySelector('.close-btn');
+
+        // Ürün tıklanınca detay göster
+        productGrid.addEventListener('click', (e) => {
+            let card = e.target.closest('.product-card');
+            if (!card) return;
+            let id = card.getAttribute('data-id');
+            if (!products[id]) return;
+
+            detailImg.src = products[id].img;
+            detailImg.alt = products[id].title;
+            detailTitle.textContent = products[id].title;
+            detailDesc.textContent = products[id].desc;
+            detailPrice.textContent = products[id].price;
+
+            detailBox.style.display = 'block';
+            detailBox.scrollIntoView({behavior: "smooth"});
+        });
+
+        // Kapat butonu
+        closeBtn.addEventListener('click', () => {
+            detailBox.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
